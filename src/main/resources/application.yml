@@ -1,0 +1,68 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /soap-service-cxf-example
+
+spring:
+  application:
+    name: soap-client
+
+# SOAP Service Configuration
+soap:
+  authorization:
+    service:
+      url: http://10.29.60.95:8080/easws/sharedservice/AuthorizationSharedService
+      timeout: 30000
+      connection-timeout: 10000
+      receive-timeout: 30000
+      allow-chunking: false
+      max-retries: 3
+      enable-logging: true
+
+# Logging Configuration
+logging:
+  level:
+    org.apache.cxf: DEBUG
+    com.example: DEBUG
+    org.springframework.web: INFO
+    org.apache.cxf.interceptor: TRACE
+    root: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/soap-client.log
+
+# CXF Configuration
+cxf:
+  path: /services
+  servlet:
+    init:
+      service-list-path: /info
+  jaxws:
+    client:
+      connection-timeout: 10000
+      receive-timeout: 30000
+
+# Management and Monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+# Application Info
+info:
+  application:
+    name: ${spring.application.name}
+    description: SOAP Client for Authorization Service
+    version: 1.0.0
+    encoding: UTF-8
+    java:
+      version: ${java.version}

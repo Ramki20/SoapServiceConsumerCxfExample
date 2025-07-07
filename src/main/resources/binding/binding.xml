@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+                xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                wsdlLocation="../wsdl/example-new.wsdl">
+
+    <!-- Global bindings -->
+    <jaxws:bindings node="wsdl:definitions">
+        <jaxws:package name="com.example.soap.client.generated"/>
+        <jaxws:enableWrapperStyle>true</jaxws:enableWrapperStyle>
+        <jaxws:enableAsyncMapping>false</jaxws:enableAsyncMapping>
+    </jaxws:bindings>
+
+    <!-- Service binding -->
+    <jaxws:bindings node="wsdl:definitions/wsdl:service[@name='AuthorizationSharedService']">
+        <jaxws:class name="AuthorizationSharedServiceService"/>
+    </jaxws:bindings>
+
+    <!-- Port type binding -->
+    <jaxws:bindings node="wsdl:definitions/wsdl:portType[@name='AuthorizationSharedService']">
+        <jaxws:class name="AuthorizationSharedService"/>
+    </jaxws:bindings>
+
+    <!-- Operation method bindings to avoid conflicts -->
+    <jaxws:bindings node="wsdl:definitions/wsdl:portType[@name='AuthorizationSharedService']/wsdl:operation[@name='findMatchingUserIdentity']">
+        <jaxws:method name="findMatchingUserIdentity"/>
+    </jaxws:bindings>
+
+    <jaxws:bindings node="wsdl:definitions/wsdl:portType[@name='AuthorizationSharedService']/wsdl:operation[@name='findOfficesByEauthId']">
+        <jaxws:method name="findOfficesByEauthId"/>
+    </jaxws:bindings>
+
+    <jaxws:bindings node="wsdl:definitions/wsdl:portType[@name='AuthorizationSharedService']/wsdl:operation[@name='getUserRoles']">
+        <jaxws:method name="getUserRoles"/>
+    </jaxws:bindings>
+
+    <jaxws:bindings node="wsdl:definitions/wsdl:portType[@name='AuthorizationSharedService']/wsdl:operation[@name='findUsersByCriteria']">
+        <jaxws:method name="findUsersByCriteria"/>
+    </jaxws:bindings>
+
+    <jaxws:bindings node="wsdl:definitions/wsdl:portType[@name='AuthorizationSharedService']/wsdl:operation[@name='isHealthy']">
+        <jaxws:method name="isHealthy"/>
+    </jaxws:bindings>
+
+    <!-- Schema bindings for type customization -->
+    <jaxws:bindings node="wsdl:definitions/wsdl:types/xsd:schema[@targetNamespace='http://web.service.eas.citso.fsa.usda.gov']">
+        
+        <!-- Customize request/response wrapper classes -->
+        <jaxb:bindings node="xsd:element[@name='FindMatchingUserIdentityRequest']">
+            <jaxb:class name="FindMatchingUserIdentityRequestType"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:element[@name='FindMatchingUserIdentityResponse']">
+            <jaxb:class name="FindMatchingUserIdentityResponseType"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:element[@name='FindOfficesByEauthIdRequest']">
+            <jaxb:class name="FindOfficesByEauthIdRequestType"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:element[@name='FindOfficesByEauthIdResponse']">
+            <jaxb:class name="FindOfficesByEauthIdResponseType"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:element[@name='GetUserRolesRequest']">
+            <jaxb:class name="GetUserRolesRequestType"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:element[@name='GetUserRolesResponse']">
+            <jaxb:class name="GetUserRolesResponseType"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:element[@name='FindUsersByCriteriaRequest']">
+            <jaxb:class name="FindUsersByCriteriaRequestType"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:element[@name='FindUserCriteriaResponse']">
+            <jaxb:class name="FindUserCriteriaResponseType"/>
+        </jaxb:bindings>
+
+        <!-- Customize operation wrapper classes -->
+        <jaxb:bindings node="xsd:complexType[@name='findMatchingUserIdentity']">
+            <jaxb:class name="FindMatchingUserIdentityOperation"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:complexType[@name='findMatchingUserIdentityResponse']">
+            <jaxb:class name="FindMatchingUserIdentityOperationResponse"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:complexType[@name='findOfficesByEauthId']">
+            <jaxb:class name="FindOfficesByEauthIdOperation"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:complexType[@name='findOfficesByEauthIdResponse']">
+            <jaxb:class name="FindOfficesByEauthIdOperationResponse"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:complexType[@name='getUserRoles']">
+            <jaxb:class name="GetUserRolesOperation"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:complexType[@name='getUserRolesResponse']">
+            <jaxb:class name="GetUserRolesOperationResponse"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:complexType[@name='findUsersByCriteria']">
+            <jaxb:class name="FindUsersByCriteriaOperation"/>
+        </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:complexType[@name='findUsersByCriteriaResponse']">
+            <jaxb:class name="FindUsersByCriteriaOperationResponse"/>
+        </jaxb:bindings>
+
+    </jaxws:bindings>
+
+</jaxws:bindings>
